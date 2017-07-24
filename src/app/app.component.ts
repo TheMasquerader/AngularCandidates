@@ -5,30 +5,19 @@ import { CandidateService } from './services/candidate.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  //templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [CandidateService] // Tells Angular to create a fresh instance of the `CandidateService` when it creates an `AppComponent`.
+  template: `
+    <h1>{{title}}</h1>
+    <!--<my-candidates></my-candidates>-->
+    <nav>
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/candidates">Candidates</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Oatmeal Candidates';
-
-  candidates: Candidate[];
-  selectedCandidate: Candidate;
-
-  constructor(private candidateService: CandidateService) {}
-  // The constructor itself does nothing. The parameter simultaneously defines a private `candidateService` property and identifies it as a `CandidateService` injection site.
-  // Now Angular knows to supply an instance of the `CandidateService` when it creates an `AppComponent`.
-
-  ngOnInit(): void {
-    this.getCandidates();
-  }
-
-  onSelect(candidate: Candidate): void {
-    this.selectedCandidate = candidate;
-  }
-
-  getCandidates(): void {
-    this.candidates = this.candidateService.getData();
-  }
 }
