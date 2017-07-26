@@ -9,10 +9,9 @@ import { CandidateService } from './services/candidate.service';
   styleUrls: ['./app.component.css'],
   template: `
     <h1>{{title}}</h1>
-    <!--<my-candidates></my-candidates>-->
     <nav>
-      <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/candidates">Candidates</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a> <!--routerLinkActive directive-->
+      <a routerLink="/candidates" routerLinkActive="active">Candidates</a>
     </nav>
     <router-outlet></router-outlet>
   `

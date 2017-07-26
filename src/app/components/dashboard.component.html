@@ -1,10 +1,11 @@
 <h3>Top Candidates</h3>
 <div class="grid grid-pad">
 
-    <!-- `[routerLink]` binding. -->
+    <!-- `[routerLink]` binding - to an expression containing a link parameters array. -->
     <a *ngFor="let candidate of candidates" [routerLink]="['/detail', candidate.id]" class="col-1-4">
         <div class="module candidate">
             <h4>{{candidate.name}}</h4>
         </div>
     </a>
 </div>
+<candidate-search></candidate-search>

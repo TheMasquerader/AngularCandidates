@@ -1,13 +1,30 @@
-<h1>{{title}}</h1>
+<!--<h1>{{title}}</h1>-->
 <h2>Candidates</h2>
+
+<div>
+  <label>Canidate name:</label><input #candidateName/>
+  <button (click)="add(candidateName.value); candidateName.value=''">
+    Add
+  </button>
+</div>
+
 <ul class="candidates">
   <li *ngFor="let candidate of candidates"
     [class.selected]="candidate === selectedCandidate"
     (click)="onSelect(candidate)">
-    <span class="badge">{{candidate.id}}</span> {{candidate.name}}
+    <span class="badge">{{candidate.id}}</span>
+    <span>{{candidate.name}}</span>
+    <button class="delete" (click)="delete(candidate); $event.stopPropagation()">x</button>
   </li>
 </ul>
-<candidate-detail [candidate]="selectedCandidate"></candidate-detail>
+<!--<candidate-detail [candidate]="selectedCandidate"></candidate-detail>-->
+<div *ngIf="selectedCandidate">
+  <h2>
+    {{selectedCandidate.name | uppercase}} is a top candidate <!-- interpolation binding -->
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
+
 <!--
   Square brackets around the -candidate- property and putting it to the left of the equal sign makes it the target of a property binding expression.
  -->

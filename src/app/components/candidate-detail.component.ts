@@ -9,7 +9,8 @@ import { CandidateService } from '../services/candidate.service';
 
 @Component({
     selector: 'candidate-detail',
-    templateUrl: './candidate-detail.component.html'
+    templateUrl: './candidate-detail.component.html',
+    styleUrls: ['./candidate-detail.component.css']
 })
 
 export class CandidateDetailComponent implements OnInit {
@@ -27,6 +28,11 @@ export class CandidateDetailComponent implements OnInit {
 
       // The candidate `id` is a number. Route params are always string -> the route parameter value is converted to a number with the JavaScript (+) operator.
       this.route.paramMap.switchMap((params: ParamMap) => this.candidateService.getCandidate(+params.get('id'))).subscribe(candidate => this.candidate = candidate);
+    }
+
+    save(): void {
+      this.candidateService.update(this.candidate)
+        .then(() => this.goBack())
     }
 
     goBack(): void {
